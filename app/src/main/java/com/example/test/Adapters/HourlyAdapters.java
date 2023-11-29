@@ -15,9 +15,14 @@ public class HourlyAdapters extends RecyclerView.Adapter<HourlyAdapters.viewhold
     ArrayList<Hourly> items;
     Context context;
 
+    public HourlyAdapters(ArrayList<Hourly> items) {
+        this.items = items;
+    }
+
     @NonNull
     @Override
     public HourlyAdapters.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        context=parent.getContext();
         return null;
     }
 
