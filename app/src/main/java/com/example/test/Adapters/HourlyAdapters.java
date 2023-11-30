@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.test.Domains.Hourly;
 import com.example.test.R;
 
@@ -28,14 +29,21 @@ public class HourlyAdapters extends RecyclerView.Adapter<HourlyAdapters.viewhold
     @Override
     public HourlyAdapters.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context=parent.getContext();
-        View inflater= LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_hourly,parent,false)
+        View inflate= LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_hourly,parent,false);
         return new viewholder(inflate);
     }
 
     @Override
     public void onBindViewHolder(@NonNull HourlyAdapters.viewholder holder, int position) {
-holder.hourTxt.setText(items.get(position).getHour());
-holder.tempTxt.setText(items.get(position).getTemp()+""); //2023.11.29 23:05
+        holder.hourTxt.setText(items.get(position).getHour());
+        holder.tempTxt.setText(items.get(position).getTemp()+"°"); //2023.11.29 23:05
+
+        int drawableresourceId=holder.itemView.getResources()
+                .getIdentifier(items.get(position).getPicPath(),"drawable",holder.itemView.getContext().getPackageName()); //??
+
+        Glide.with(context)
+                .load(drawableresourceId)
+                .into(holder.pic);
     }
 
     @Override

@@ -27,8 +27,8 @@
             android:layout_height="45dp"
             android:layout_gravity="center"
             android:layout_margin="8dp"
-            android:src="@tools:sample/avatars"
-            app:srcCompat="@drawable/cloudy_sunny" />
+            android:src="@drawable/cloudy_sunny"
+            />
 
         <TextView
             android:id="@+id/tempTxt"
