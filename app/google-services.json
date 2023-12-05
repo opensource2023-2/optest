@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "714494962090",
+    "project_id": "opensw-2023-2",
+    "storage_bucket": "opensw-2023-2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:714494962090:android:81f59cc38b8ddbe80ee3d3",
+        "android_client_info": {
+          "package_name": "com.example.test"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAv8Gk_Wl0DxSDDJMM7kCuzZX5ASTInvkE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
