@@ -13,7 +13,30 @@
         android:theme="@style/Theme.Test"
         tools:targetApi="31">
         <activity
+            android:name=".board_new"
+            android:exported="false" />
+        <activity
+            android:name=".board_ex"
+            android:exported="false" />
+        <activity
+            android:name=".board"
+            android:exported="false" />
+        <activity
+            android:name=".clothes_mat_ex"
+            android:exported="false" />
+        <activity
+            android:name=".clothes_mat"
+            android:exported="false" />
+        <activity
+            android:name=".clothe_mat"
+            android:exported="false"
+            android:label="@string/title_activity_clothe_mat"
+            android:theme="@style/Theme.Test" />
+        <activity
             android:name=".Intro_page"
+            android:exported="false" />
+        <activity
+            android:name=".home_page"
             android:exported="false" />
         <activity
             android:name=".Signup_page"
