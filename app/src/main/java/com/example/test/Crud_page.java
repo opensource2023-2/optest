@@ -25,11 +25,6 @@ public class Crud_page extends AppCompatActivity {
         NavController navController = Navigation.findNavController(Crud_page.this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(navigationRailview, navController);
 
-        Objects.requireNonNull(navigationRailview.getHeaderView()).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void OnClick(View v){
-                Toast.makeText(Crud_page.this,"Replace this with your own action", Toast.LENGTH_SHORT).show();
-            }
-        });
+        Objects.requireNonNull(navigationRailview.getHeaderView()).setOnClickListener(v -> Toast.makeText(Crud_page.this,"Replace this with your own action", Toast.LENGTH_SHORT).show());
     }
 }
