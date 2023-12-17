@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-public class Intro_page extends AppCompatActivity {
+public class home_page extends AppCompatActivity {
 
     ImageButton mat_btn;
     @Override

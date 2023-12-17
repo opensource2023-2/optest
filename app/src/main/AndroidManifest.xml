@@ -40,7 +40,7 @@
             android:name=".Crud_page"
             android:exported="false" />
         <activity
-            android:name=".Intro_page"
+            android:name=".home_page"
             android:exported="false" />
         <activity
             android:name=".Signup_page"
