@@ -20,13 +20,13 @@
     <Button
         android:id="@+id/weather_btn"
         android:layout_width="300dp"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         android:layout_gravity="center"
 
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="100dp"
         android:backgroundTint="#81F7D8"
-        android:text="날씨 추천"
-        android:textSize="50sp"
+        android:text="wheter recommend"
+        android:textSize="20dp"
         android:textStyle="bold"
 
         />
@@ -34,17 +34,16 @@
     <Button
         android:id="@+id/mat_btn"
         android:layout_width="300dp"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         android:layout_marginTop="50dp"
         android:layout_gravity="center"
         android:backgroundTint="#81F7D8"
-        android:text="소재 및 게시판"
-        android:textSize="35sp"
+        android:text="Material recommend and  Board"
+        android:textSize="20sp"
         android:textStyle="bold"
+
         />
 
 
 
 </LinearLayout>
-
-<!--위는 날씨 추천 아래는 소재  +  게시판 -->
