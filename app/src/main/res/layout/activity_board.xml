@@ -16,50 +16,48 @@
         android:onClick="onPropertyButtonClick"
         app:srcCompat="@drawable/baseline_home_24" />
 
-    <Button
-        android:id="@+id/goboardex"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:layout_weight="1"
-        android:onClick="onPropertyButtonClick"
-        android:text="빨래 방법"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="300dp"
-        android:textsize="20sp"/>
 
     <Button
         android:id="@+id/propertyButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="100dp"
-        android:layout_marginStart="50dp"
         android:layout_weight="1"
-        android:text="소재" />
+        android:backgroundTint="#D8D8D8"
+        android:text="소재"
+        android:textColor="#000000" />
 
     <Button
         android:id="@+id/buttonContainer"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:onClick="onPropertyButtonClick"
+        android:layout_marginStart="140dp"
         android:layout_marginTop="100dp"
-        android:layout_marginStart="150dp"
         android:layout_weight="1"
-        android:text="      선택하기    " />
+        android:backgroundTint="#D8D8D8"
+        android:onClick="onPropertyButtonClick"
+        android:text="      선택하기    "
+        android:textColor="#000000" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:layout_marginTop="180dp"
-        android:id="@+id/recycler"
-        app:layoutMannager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        app:layoutMannager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="16sp"
-        android:id="@+id/addNote"
-        android:src="@drawable/baseline_add_24"/>
+        android:layout_marginStart="16sp"
+        android:layout_marginTop="16sp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="17dp"
+        android:backgroundTint="#81F7D8"
+        android:src="@drawable/baseline_add_24" />
 
 </RelativeLayout>
