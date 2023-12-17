@@ -49,7 +49,7 @@ public class MainActivity2 extends AppCompatActivity {
                 titleEt = view1.findViewById(R.id.titleET);
                 contentET = view1.findViewById(R.id.contentET);
                 AlertDialog alertDialog = new AlertDialog.Builder(MainActivity2.this)
-                        .setTitle("Add")
+                        .setTitle("추가하기")
                         .setView(view1)
                         .setPositiveButton("추가", new DialogInterface.OnClickListener() {
                             @Override
@@ -136,7 +136,7 @@ public class MainActivity2 extends AppCompatActivity {
                         ProgressDialog progressDialog = new ProgressDialog(MainActivity2.this);
 
                         AlertDialog alertDialog = new AlertDialog.Builder(MainActivity2.this)
-                                .setTitle("Edit-Cancel")
+                                .setTitle("보기-편집하기")
                                 .setView(view)
                                 .setPositiveButton("저장", new DialogInterface.OnClickListener() {
                                     @Override
@@ -174,7 +174,7 @@ public class MainActivity2 extends AppCompatActivity {
                                         dialogInterface.dismiss();
                                     }
                                 })
-                                .setNegativeButton("삭제하기", new DialogInterface.OnClickListener() {
+                                .setNegativeButton("삭제", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         progressDialog.setTitle("삭제 중...");
