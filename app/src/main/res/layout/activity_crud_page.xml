@@ -8,12 +8,13 @@
     tools:context=".Crud_page">
 
     <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationRail"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alionParentStart="true"
-        android:id="@+id/navigationRail"
-        app:menu="@menu/nav_menu"
-        app:headerLayout="@layout/nav_header"/>
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_menu" />
+
     <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
