@@ -51,7 +51,7 @@ public class MainActivity2 extends AppCompatActivity {
                 AlertDialog alertDialog = new AlertDialog.Builder(MainActivity2.this)
                         .setTitle("Add")
                         .setView(view1)
-                        .setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("추가", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 if (Objects.requireNonNull(titleEt.getText()).toString().isEmpty()) {
@@ -62,10 +62,10 @@ public class MainActivity2 extends AppCompatActivity {
                                     ProgressDialog dialog = new ProgressDialog(MainActivity2.this);
                                     dialog.setMessage("Database에 저장 중입니다...");
                                     dialog.show();
-                                    Note note = new Note();
-                                    note.setTitle(titleEt.getText().toString());
-                                    note.setContent(contentET.getText().toString());
-                                    database.getReference().child("notes").push().setValue(note).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    Note note1 = new Note();
+                                    note1.setTitle(titleEt.getText().toString());
+                                    note1.setContent(contentET.getText().toString());
+                                    database.getReference().child("notes").push().setValue(note1).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
                                             dialog.dismiss();
@@ -82,7 +82,7 @@ public class MainActivity2 extends AppCompatActivity {
                                 }
                             }
                         })
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 dialogInterface.dismiss();
@@ -138,7 +138,7 @@ public class MainActivity2 extends AppCompatActivity {
                         AlertDialog alertDialog = new AlertDialog.Builder(MainActivity2.this)
                                 .setTitle("Edit")
                                 .setView(view)
-                                .setPositiveButton("save", new DialogInterface.OnClickListener() {
+                                .setPositiveButton("저장", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         if (Objects.requireNonNull(titleET.getText()).toString().isEmpty()) {
@@ -168,13 +168,13 @@ public class MainActivity2 extends AppCompatActivity {
                                         }
                                     }
                                 })
-                                .setNeutralButton("Close", new DialogInterface.OnClickListener() {
+                                .setNeutralButton("닫기", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         dialogInterface.dismiss();
                                     }
                                 })
-                                .setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+                                .setNegativeButton("삭제하기", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         progressDialog.setTitle("삭제 중...");

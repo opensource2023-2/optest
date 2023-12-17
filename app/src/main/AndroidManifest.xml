@@ -22,7 +22,7 @@
             android:name=".weather_rec_day"
             android:exported="false" />
         <activity
-            android:name=".board_new"
+            android:name=".board_more"
             android:exported="false" />
         <activity
             android:name=".board_ex"
