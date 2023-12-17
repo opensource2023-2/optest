@@ -29,11 +29,11 @@
         android:layout_marginTop="10sp"
         android:id="@+id/contentLayout"
         android:hint="내용을 입력하세요">
-        
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/contentET"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textCapSentences|textMultiLine"
-            android:id="@+id/contentET"/>
+            android:layout_height="201dp"
+            android:inputType="textCapSentences|textMultiLine" />
     </com.google.android.material.textfield.TextInputLayout>
 </RelativeLayout>
