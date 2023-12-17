@@ -136,7 +136,7 @@ public class MainActivity2 extends AppCompatActivity {
                         ProgressDialog progressDialog = new ProgressDialog(MainActivity2.this);
 
                         AlertDialog alertDialog = new AlertDialog.Builder(MainActivity2.this)
-                                .setTitle("Edit")
+                                .setTitle("Edit-Cancel")
                                 .setView(view)
                                 .setPositiveButton("저장", new DialogInterface.OnClickListener() {
                                     @Override
