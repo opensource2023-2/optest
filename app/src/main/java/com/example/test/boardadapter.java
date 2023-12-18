@@ -30,9 +30,9 @@ public class boardadapter extends RecyclerView.Adapter<boardadapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String textofdbnum = String.format("%-6s",arrayList.get(position).getDbnum());
-        if (textofdbnum.length() > 6){
-            textofdbnum = textofdbnum.substring(0, 6);
+        String textofdbnum = String.format("%-5s",arrayList.get(position).getDbnum());
+        if (textofdbnum.length() > 5){
+            textofdbnum = textofdbnum.substring(0, 5);
         }
         textofdbnum = "  " + textofdbnum + " ";
         holder.dbnum.setText(textofdbnum);
@@ -51,9 +51,9 @@ public class boardadapter extends RecyclerView.Adapter<boardadapter.ViewHolder>{
         textoftitle = " " + textoftitle + " ";
         holder.title.setText(textoftitle);
 
-        String textofwriterid = String.format("%-15s",arrayList.get(position).getWriterID());
-        if (textofwriterid.length() > 15){
-            textofwriterid = textofwriterid.substring(0, 15);
+        String textofwriterid = String.format("%-12s",arrayList.get(position).getWriterID());
+        if (textofwriterid.length() > 12){
+            textofwriterid = textofwriterid.substring(0, 12);
         }
         textofwriterid = " " + textofwriterid + "  ";
         holder.writerid.setText(textofwriterid);

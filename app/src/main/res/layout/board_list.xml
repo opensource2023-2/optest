@@ -17,7 +17,7 @@
 
         <TextView
             android:id="@+id/list_item_bnum"
-            android:layout_width="60dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:text="번호"
             android:textSize="16sp"
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/list_item_bnum"
             android:text=" | "
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textColor="#000000"/>
 
         <TextView
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/list_item_material"
             android:text=" | "
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textColor="#000000"/>
 
         <TextView
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/list_item_title"
             android:text=" | "
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textColor="#000000"/>
 
         <TextView
