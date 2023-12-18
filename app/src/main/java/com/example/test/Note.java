@@ -1,7 +1,7 @@
 package com.example.test;
 
 public class Note {
-    String key, title, material, content;
+    String key, title, material, content, writerID;
 
     public Note(){
 
@@ -16,6 +16,8 @@ public class Note {
     public String getContent(){
         return content;
     }
+
+    public String getWriterID(){return writerID;}
 
     public String getKey(){
         return key;

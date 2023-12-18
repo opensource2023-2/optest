@@ -45,8 +45,8 @@ public class MainActivity2 extends AppCompatActivity {
                 TextInputLayout titleLayout, contentLayout;
                 titleLayout = view1.findViewById(R.id.titleLayout);
                 contentLayout = view1.findViewById(R.id.contentLayout);
-                TextInputEditText titleEt, contentET;
-                titleEt = view1.findViewById(R.id.titleET);
+                TextInputEditText titleET, contentET;
+                titleET = view1.findViewById(R.id.titleET);
                 contentET = view1.findViewById(R.id.contentET);
                 AlertDialog alertDialog = new AlertDialog.Builder(MainActivity2.this)
                         .setTitle("추가하기")
@@ -54,7 +54,7 @@ public class MainActivity2 extends AppCompatActivity {
                         .setPositiveButton("추가", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                if (Objects.requireNonNull(titleEt.getText()).toString().isEmpty()) {
+                                if (Objects.requireNonNull(titleET.getText()).toString().isEmpty()) {
                                     titleLayout.setError("필수로 입력해야 하는 영역입니다.");
                                 } else if (Objects.requireNonNull(contentET.getText()).toString().isEmpty()) {
                                     contentLayout.setError("필수로 입력해야 하는 영역입니다.");
@@ -63,7 +63,7 @@ public class MainActivity2 extends AppCompatActivity {
                                     dialog.setMessage("Database에 저장 중입니다...");
                                     dialog.show();
                                     Note note1 = new Note();
-                                    note1.setTitle(titleEt.getText().toString());
+                                    note1.setTitle(titleET.getText().toString());
                                     note1.setContent(contentET.getText().toString());
                                     database.getReference().child("notes").push().setValue(note1).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
