@@ -20,7 +20,7 @@
         android:id="@+id/login_email"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="60dp"
         android:layout_gravity="center"
         android:ems="15"
         android:hint="EMAIL"
@@ -37,6 +37,16 @@
         android:inputType="textPassword"
         tools:layout_editor_absoluteX="25dp"
         tools:layout_editor_absoluteY="400dp" />
+
+    <EditText
+        android:id="@+id/login_username"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
+        android:ems="15"
+        android:hint="Enter the Username"
+        android:inputType="text" />
 
 
 

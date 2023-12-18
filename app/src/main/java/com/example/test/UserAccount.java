@@ -4,7 +4,7 @@ package com.example.test;
 */
 public class UserAccount
 {
-    private String emailId, password, idToken; //firebase Uid(고유 토큰 정보)
+    private String emailId, password, idToken, username; //firebase Uid(고유 토큰 정보)
 
     public UserAccount() {
 
@@ -33,4 +33,8 @@ public class UserAccount
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getUsername() { return username; }
+
+    public void setUsername(String username) { this.username = username; }
 }

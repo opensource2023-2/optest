@@ -15,8 +15,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Login_page extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth;     //파이어베이스 인증 처리
@@ -52,9 +55,22 @@ public class Login_page extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             //로그인 성공
                             FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
-                            if (currentUser != null) {
-                                ((GlobalVars) getApplicationContext()).setUserID(strEmail); // 전역 변수에 이메일 저장
-                            }
+                            String uid = currentUser.getUid();
+                            DatabaseReference usersRef = mDatabaseRef.child("UserAccount");
+                            usersRef.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                                    if (datasnapshot.exists()){
+                                        String currentusername = datasnapshot.child("username").getValue(String.class);
+                                        ((GlobalVars) getApplicationContext()).setUserID(currentusername);
+                                    }
+                                }
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+
                             Intent intent = new Intent(Login_page.this, home_page.class);
                             startActivity(intent);
                             finish(); //현재 엑티비티 파괴
