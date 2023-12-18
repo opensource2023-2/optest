@@ -55,7 +55,7 @@
         android:layout_marginTop="16sp"
         android:layout_marginEnd="17dp"
         android:layout_marginBottom="17dp"
-        android:backgroundTint="#81F7D8"
+        android:backgroundTint="#01DFA5"
         android:src="@drawable/baseline_add_24" />
 
 

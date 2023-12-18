@@ -44,7 +44,7 @@
         android:id="@+id/login_success"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="#81F7D8"
+        android:backgroundTint="#01DFA5"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:text="LOGIN"
@@ -58,7 +58,7 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="3dp"
-        android:backgroundTint="#81F7D8"
+        android:backgroundTint="#01DFA5"
         android:text="signup" />
 
 

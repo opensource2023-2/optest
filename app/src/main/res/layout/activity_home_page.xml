@@ -13,7 +13,6 @@
         android:id="@+id/imageView"
         android:layout_width="135dp"
         android:layout_height="100dp"
-
         android:layout_marginTop="20dp"
         app:srcCompat="@drawable/logo" />
 
@@ -22,11 +21,11 @@
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
-
         android:layout_marginTop="100dp"
-        android:backgroundTint="#81F7D8"
-        android:text="wheter recommend"
-        android:textSize="20dp"
+        android:backgroundTint="#01DFA5"
+        android:text="날씨 추천 "
+        android:textSize="35dp"
+        android:fontFamily="@font/roundfont"
         android:textStyle="bold"
 
         />
@@ -37,9 +36,10 @@
         android:layout_height="100dp"
         android:layout_marginTop="50dp"
         android:layout_gravity="center"
-        android:backgroundTint="#81F7D8"
-        android:text="Material recommend and  Board"
-        android:textSize="20sp"
+        android:backgroundTint="#01DFA5"
+        android:text="게시판 및 소재별 Tip!"
+        android:fontFamily="@font/roundfont"
+        android:textSize="32sp"
         android:textStyle="bold"
 
         />
