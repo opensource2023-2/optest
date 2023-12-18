@@ -41,8 +41,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
-        android:layout_height="509dp"
+        android:layout_height="530dp"
+        android:layout_alignParentBottom="true"
         android:layout_marginTop="120dp"
+        android:layout_marginBottom="-4dp"
+        android:background="@drawable/washing"
         app:layoutMannager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -78,6 +81,18 @@
         android:textColor="#424242"
         android:text="    "
         />
+
+    <ImageView
+
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="16sp"
+        android:layout_marginEnd="304dp"
+        android:layout_marginBottom="18dp"
+        android:src="@drawable/logo" />
 
 
 
