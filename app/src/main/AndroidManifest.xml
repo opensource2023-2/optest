@@ -16,15 +16,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Test"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        android:name = ".GlobalVars">
+
         <activity android:name=".weather_page"
             android:exported="false" />
+
         <activity
             android:name=".weather_rec_day"
             android:exported="false" />
         <activity
             android:name=".board"
             android:exported="false" />
+
         <activity
             android:name=".home_page"
             android:exported="false" />
