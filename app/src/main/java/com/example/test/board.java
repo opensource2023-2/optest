@@ -154,8 +154,8 @@ public class board extends AppCompatActivity {
                         TextView outputofuserID;
                         outputofuserID = view.findViewById(R.id.useridoutput);
                         String inviewuserid = note.getWriterID();
-                        inviewuserid = " 작성자 : " + inviewuserid;
-                        outputofuserID.setText(inviewuserid);
+                        outputofuserID.setText(" 작성자 : " + inviewuserid);
+                        String forpare = ((GlobalVars) getApplicationContext()).getUserID();
 
                         TextInputLayout materialLayout, titleLayout, contentLayout;
                         TextInputEditText materialET, titleET, contentET;
@@ -173,7 +173,8 @@ public class board extends AppCompatActivity {
 
                         ProgressDialog progressDialog = new ProgressDialog(board.this);
 
-                        AlertDialog alertDialog = new AlertDialog.Builder(board.this)
+                        if (forpare == inviewuserid){
+                            AlertDialog alertDialog = new AlertDialog.Builder(board.this)
                                 .setTitle("보기 - 편집하기")
                                 .setView(view)
                                 .setPositiveButton("저장", new DialogInterface.OnClickListener() {
@@ -233,7 +234,21 @@ public class board extends AppCompatActivity {
                                         });
                                     }
                                 }).create();
-                        alertDialog.show();
+                            alertDialog.show();
+                        }
+                        else {
+                            AlertDialog alertDialog = new AlertDialog.Builder(board.this)
+                                    .setTitle("보기")
+                                    .setView(view)
+                                    .setNeutralButton("닫기", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            dialogInterface.dismiss();
+                                        }
+                                    })
+                                    .create();
+                            alertDialog.show();
+                        }
                     }
                 });
             }
