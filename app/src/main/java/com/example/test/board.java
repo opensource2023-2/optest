@@ -150,12 +150,15 @@ public class board extends AppCompatActivity {
                 adapter.setOnItemClickListener(new boardadapter.OnItemClickListener() {
                     @Override
                     public void onClick(Note note) {
-                        View view = LayoutInflater.from(board.this).inflate(R.layout.board_more, null);
+                        View view = LayoutInflater.from(board.this).inflate(R.layout.board_more_2, null);
                         TextView outputofuserID;
                         outputofuserID = view.findViewById(R.id.useridoutput);
                         String inviewuserid = note.getWriterID();
-                        outputofuserID.setText(" 작성자 : " + inviewuserid);
                         String forpare = ((GlobalVars) getApplicationContext()).getUserID();
+                        if (forpare == inviewuserid){
+                            outputofuserID.setText("   내가 작성한 글 ");
+                        }
+                        else {outputofuserID.setText("   작성자 : " + inviewuserid);}
 
                         TextInputLayout materialLayout, titleLayout, contentLayout;
                         TextInputEditText materialET, titleET, contentET;
