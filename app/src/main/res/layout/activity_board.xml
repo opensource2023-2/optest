@@ -42,7 +42,7 @@
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="509dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="120dp"
         app:layoutMannager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -63,7 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="90dp"
-        android:text="  번호                         제목                               아이디                     작성일 "
+        android:text="      번호      |       소재       |                제목                |              아이디            "
         android:textStyle="bold"
 
     />

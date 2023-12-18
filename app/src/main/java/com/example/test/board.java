@@ -49,9 +49,9 @@ public class board extends AppCompatActivity {
                 titleEt = view1.findViewById(R.id.titleET);
                 contentET = view1.findViewById(R.id.contentET);
                 AlertDialog alertDialog = new AlertDialog.Builder(board.this)
-                        .setTitle("Add")
+                        .setTitle("추가하기")
                         .setView(view1)
-                        .setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("추가", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 if (Objects.requireNonNull(titleEt.getText()).toString().isEmpty()) {
@@ -82,7 +82,7 @@ public class board extends AppCompatActivity {
                                 }
                             }
                         })
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 dialogInterface.dismiss();
@@ -136,9 +136,9 @@ public class board extends AppCompatActivity {
                         ProgressDialog progressDialog = new ProgressDialog(board.this);
 
                         AlertDialog alertDialog = new AlertDialog.Builder(board.this)
-                                .setTitle("Edit")
+                                .setTitle(" ")
                                 .setView(view)
-                                .setPositiveButton("save", new DialogInterface.OnClickListener() {
+                                .setPositiveButton("저장", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         if (Objects.requireNonNull(titleET.getText()).toString().isEmpty()) {
@@ -168,13 +168,13 @@ public class board extends AppCompatActivity {
                                         }
                                     }
                                 })
-                                .setNeutralButton("Close", new DialogInterface.OnClickListener() {
+                                .setNeutralButton("닫기", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         dialogInterface.dismiss();
                                     }
                                 })
-                                .setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+                                .setNegativeButton("삭제", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         progressDialog.setTitle("삭제 중...");

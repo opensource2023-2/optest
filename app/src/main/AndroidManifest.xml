@@ -13,31 +13,13 @@
         android:theme="@style/Theme.Test"
         tools:targetApi="31">
         <activity
-            android:name=".clothes_mat_ex"
-            android:exported="false" />
-        <activity
-            android:name=".clothes_mat"
-            android:exported="false" />
-        <activity
             android:name=".weather_rec_day"
-            android:exported="false" />
-        <activity
-            android:name=".board_more"
-            android:exported="false" />
-        <activity
-            android:name=".board_ex"
             android:exported="false" />
         <activity
             android:name=".board"
             android:exported="false" />
         <activity
             android:name=".MainActivity2"
-            android:exported="false" />
-        <activity
-            android:name=".notemain"
-            android:exported="false" />
-        <activity
-            android:name=".Crud_page"
             android:exported="false" />
         <activity
             android:name=".home_page"
