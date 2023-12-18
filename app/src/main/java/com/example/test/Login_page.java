@@ -42,6 +42,8 @@ public class Login_page extends AppCompatActivity {
         mEtPwd = findViewById(R.id.login_pwd);
 
         login_success = findViewById(R.id.login_success);
+
+
         login_success.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -89,7 +89,7 @@ public class board extends AppCompatActivity {
                                     dialog.show();
                                     Note note1 = new Note();
 
-                                    DatabaseReference notesRef = database.getReference().child("notes");
+                                    DatabaseReference notesRef = database.getReference().child("test").child("notes");
 
                                     note1.setWriterID(((GlobalVars) getApplicationContext()).getUserID());
 
@@ -98,7 +98,7 @@ public class board extends AppCompatActivity {
                                     note1.setTitle(titleET.getText().toString());
 
                                     note1.setContent(contentET.getText().toString());
-                                    database.getReference().child("notes").push().setValue(note1).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    database.getReference().child("test").child("notes").push().setValue(note1).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
                                             dialog.dismiss();
@@ -128,7 +128,7 @@ public class board extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recycler);
 
-        database.getReference().child("notes").addValueEventListener(new ValueEventListener() {
+        database.getReference().child("test").child("notes").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ArrayList<Note> arrayList = new ArrayList<>();
@@ -192,7 +192,7 @@ public class board extends AppCompatActivity {
                                             note.setMaterial(materialET.getText().toString());
                                             note.setTitle(titleET.getText().toString());
                                             note.setContent(contentET.getText().toString());
-                                            database.getReference().child("notes").child(note.getKey()).setValue(note).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            database.getReference().child("test").child("notes").child(note.getKey()).setValue(note).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void unused) {
                                                     progressDialog.dismiss();
@@ -220,7 +220,7 @@ public class board extends AppCompatActivity {
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         progressDialog.setTitle("삭제 중...");
                                         progressDialog.show();
-                                        database.getReference().child("notes").child(note.getKey()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        database.getReference().child("test").child("notes").child(note.getKey()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void unused) {
                                                 Toast.makeText(board.this,"성공적으로 삭제되었습니다.", Toast.LENGTH_SHORT).show();

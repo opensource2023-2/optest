@@ -1,5 +1,6 @@
 package com.example.test;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -64,6 +65,8 @@ public class Signup_page extends AppCompatActivity
                             mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
 
                             Toast.makeText(Signup_page.this, "SignUp Success", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(Signup_page.this, home_page.class); // NextActivity에는 넘어가고자 하는 다음 액티비티의 클래스명을 넣어야 합니다.
+                            startActivity(intent);
                         }else {
                             Toast.makeText(Signup_page.this, "SignUp Fail", Toast.LENGTH_SHORT).show();
                         }
