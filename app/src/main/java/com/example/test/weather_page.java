@@ -26,11 +26,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.test.FavCityAdapter;
-import com.example.test.FavCityModel;
-import com.example.test.NetworkCheck;
-import com.example.test.WeatherModel;
-import com.example.test.WeatherModelAdapter;
 import com.google.android.material.textfield.TextInputEditText;
 import com.squareup.picasso.Picasso;
 
@@ -51,9 +46,7 @@ public class weather_page extends AppCompatActivity implements LocationListener 
     private ImageView imgBG, imgSearch, imgWeather, imgRefresh;
     private TextInputEditText editCityName;
     private ArrayList<WeatherModel> arr;
-    private ArrayList<FavCityModel> favArr;
     private WeatherModelAdapter weatherModelAdapter;
-    private FavCityAdapter favCityAdapter;
     private int PERMISSION_CODE = 1;
     double lat, lon;
     private LocationManager locationManager;
@@ -62,12 +55,6 @@ public class weather_page extends AppCompatActivity implements LocationListener 
     String[] saveKey = {
             "CurrentWeatherData",
             "ForecastWeatherData",
-            "New York",
-            "Singapore",
-            "Mumbai",
-            "Delhi",
-            "Sydney",
-            "Melbourne"
     };
 
     @Override
@@ -81,7 +68,6 @@ public class weather_page extends AppCompatActivity implements LocationListener 
         textTemp = findViewById(R.id.textTemp);
         textConditions = findViewById(R.id.textConditions);
         rvWeather = findViewById(R.id.rvWeather); //rvWeather!!!!!!!
-        rvFavs = findViewById(R.id.rvFavs);
         imgBG = findViewById(R.id.imgBG);
         imgWeather = findViewById(R.id.imgWeather);
         imgSearch = findViewById(R.id.imgSearch);
@@ -95,7 +81,6 @@ public class weather_page extends AppCompatActivity implements LocationListener 
         updateWeather(mylocal);
 
         arr = new ArrayList<>();
-        favArr = new ArrayList<>();
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
@@ -118,8 +103,7 @@ public class weather_page extends AppCompatActivity implements LocationListener 
         weatherModelAdapter = new WeatherModelAdapter(this, arr);
         rvWeather.setAdapter(weatherModelAdapter); //rvWeather!!!
 
-        favCityAdapter = new FavCityAdapter(this,favArr);
-        rvFavs.setAdapter(favCityAdapter);
+
 
         boolean isInternetAvailable = NetworkCheck.isNetworkAvailable(getApplicationContext());
         if(isInternetAvailable){
@@ -180,7 +164,6 @@ public class weather_page extends AppCompatActivity implements LocationListener 
                     Toast.makeText(weather_page.this,"Refreshing...",Toast.LENGTH_SHORT).show();
                     getCurrentWeather(lat,lon); //받아!!!!!!!!!!!!!!!!!
                     getForecastWeather(lat,lon);
-                    favArr.clear();
                     for(int i=2;i<saveKey.length;i++){
                         getFavCoord(saveKey[i],i);
                     }
@@ -445,7 +428,6 @@ public class weather_page extends AppCompatActivity implements LocationListener 
                 case 5:
                 case 6:
                 case 7:
-                    updateFavWeather(response);
                     break;
                 default:
                     Log.d("retrieveLastResponse","Wrong time");
@@ -500,7 +482,6 @@ public class weather_page extends AppCompatActivity implements LocationListener 
             @Override
             public void onResponse(JSONObject response) {
                 saveLastResponse(response,i);
-                updateFavWeather(response);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -512,22 +493,5 @@ public class weather_page extends AppCompatActivity implements LocationListener 
         requestQueue.add(jsonObjectRequest);
     }
 
-    private void updateFavWeather(JSONObject response) {
-        try{
-            String city = response.getString("name");
-            String temperature = response.getJSONObject("main").getString("temp");
-            String img = response.getJSONArray("weather")
-                    .getJSONObject(0)
-                    .getString("icon");
-            String condition = response.getJSONArray("weather")
-                    .getJSONObject(0)
-                    .getString("main");
-            double wSpeed = response.getJSONObject("wind")
-                    .getDouble("speed");
-            favArr.add(new FavCityModel(0,city,temperature,condition,String.valueOf(wSpeed),img));
-        }catch (Exception e){
-            Log.d("Update Res",e.getMessage());
-        }
-        favCityAdapter.notifyDataSetChanged();
-    }
+
 }
