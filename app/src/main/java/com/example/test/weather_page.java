@@ -26,6 +26,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.test.FavCityAdapter;
+import com.example.test.FavCityModel;
+import com.example.test.NetworkCheck;
+import com.example.test.WeatherModel;
+import com.example.test.WeatherModelAdapter;
 import com.google.android.material.textfield.TextInputEditText;
 import com.squareup.picasso.Picasso;
 
@@ -35,6 +40,8 @@ import org.json.JSONObject;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class weather_page extends AppCompatActivity implements LocationListener {
     private ProgressBar progressBar;
@@ -43,7 +50,7 @@ public class weather_page extends AppCompatActivity implements LocationListener 
     private RecyclerView rvWeather, rvFavs;
     private ImageView imgBG, imgSearch, imgWeather, imgRefresh;
     private TextInputEditText editCityName;
-    private ArrayList<com.example.test.WeatherModel> arr;
+    private ArrayList<WeatherModel> arr;
     private ArrayList<FavCityModel> favArr;
     private WeatherModelAdapter weatherModelAdapter;
     private FavCityAdapter favCityAdapter;
@@ -100,7 +107,7 @@ public class weather_page extends AppCompatActivity implements LocationListener 
             lat = location.getLatitude();
             lon = location.getLongitude();
         }
-        getCurrentWeather(lat, lon);
+        getCurrentWeather(lat, lon);  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!최신날씨 받기
         getForecastWeather(lat, lon);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 
@@ -148,7 +155,7 @@ public class weather_page extends AppCompatActivity implements LocationListener 
                 boolean isInternetAvailable = NetworkCheck.isNetworkAvailable(getApplicationContext());
                 if(isInternetAvailable){
                     Toast.makeText(weather_page.this,"Refreshing...",Toast.LENGTH_SHORT).show();
-                    getCurrentWeather(lat,lon);
+                    getCurrentWeather(lat,lon); //받아!!!!!!!!!!!!!!!!!
                     getForecastWeather(lat,lon);
                     favArr.clear();
                     for(int i=2;i<saveKey.length;i++){
@@ -179,7 +186,7 @@ public class weather_page extends AppCompatActivity implements LocationListener 
                         textLastTime.setText(getCurrentTime());
                         lon = response.getJSONObject("coord").getDouble("lon");
                         lat = response.getJSONObject("coord").getDouble("lat");
-                        getCurrentWeather(lat, lon);
+                        getCurrentWeather(lat, lon); //받아!
                         getForecastWeather(lat, lon);
                     }
                 } catch (Exception ex) {
@@ -306,40 +313,65 @@ public class weather_page extends AppCompatActivity implements LocationListener 
     }
 
     private void updateForecastWeather(JSONObject response) {
-        try{
+        try {
             int loop = response.getInt("cnt");
             JSONArray forecast = response.getJSONArray("list");
 
+            // Create a list to store forecast data before sorting
+            ArrayList<WeatherModel> forecastList = new ArrayList<>();
+
             for (int i = 0; i < loop; i += 1) {
-                String time = forecast.getJSONObject(i)
-                        .getString("dt_txt");
-                double temp = forecast.getJSONObject(i)
-                        .getJSONObject("main")
-                        .getDouble("temp");
-                String condition = forecast.getJSONObject(i)
-                        .getJSONArray("weather")
-                        .getJSONObject(0)
-                        .getString("icon");
-                double wSpeed = forecast.getJSONObject(i)
-                        .getJSONObject("wind")
-                        .getDouble("speed");
-                String pod = forecast.getJSONObject(i)
-                        .getJSONObject("sys")
-                        .getString("pod");
-                arr.add(new WeatherModel(temp, condition, wSpeed,time,pod));
-                if(i==0){
-                    if(pod.equals("n")){
-                        imgBG.setImageResource(R.drawable.night);
-                    }else {
-                        imgBG.setImageResource(R.drawable.day);
-                    }
+                String time = forecast.getJSONObject(i).getString("dt_txt");
+                double temp = forecast.getJSONObject(i).getJSONObject("main").getDouble("temp");
+                String condition = forecast.getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("icon");
+                double wSpeed = forecast.getJSONObject(i).getJSONObject("wind").getDouble("speed");
+                String pod = forecast.getJSONObject(i).getJSONObject("sys").getString("pod");
+
+                // Add forecast data to the temporary list
+                forecastList.add(new WeatherModel(temp, condition, wSpeed, time, pod));
+
+                if (i == 0 && pod.equals("n")) {
+                    imgBG.setImageResource(R.drawable.night);
+                } else if (i == 0) {
+                    imgBG.setImageResource(R.drawable.day);
                 }
             }
+
+            // Sort the list based on weather conditions (you may need to define a comparator)
+            Collections.sort(forecastList, new WeatherComparator());
+
+            // Clear the existing data in 'arr'
+            arr.clear();
+
+            // Add sorted data back to 'arr'
+            arr.addAll(forecastList);
+
+            // Notify the adapter that the data has changed
             weatherModelAdapter.notifyDataSetChanged();
-        }catch (Exception e){
-            Log.d("Update Res",e.getMessage());
+
+        } catch (Exception e) {
+            Log.d("Update Res", e.getMessage());
         }
     }
+    public class WeatherComparator implements Comparator<WeatherModel> {
+        @Override
+
+        public int compare(WeatherModel weather1, WeatherModel weather2) {
+            // 세탁지수 계산: (기온*0.729) - (0.056*풍속)
+            double laundryIndex1 = (weather1.getTemp() * 0.729) - (0.056 * weather1.getwSpeed());
+            double laundryIndex2 = (weather2.getTemp() * 0.729) - (0.056 * weather2.getwSpeed());
+
+            // 세탁지수가 높은 순으로 정렬
+            if (laundryIndex1 > laundryIndex2) {
+                return -1; // weather1이 weather2보다 우선일 때
+            } else if (laundryIndex1 < laundryIndex2) {
+                return 1; // weather1이 weather2보다 후순위일 때
+            } else {
+                return 0; // 두 날씨가 동일한 우선순위일 때
+            }
+        }
+    }
+
 
     @Override
     public void onLocationChanged(Location loca) {
