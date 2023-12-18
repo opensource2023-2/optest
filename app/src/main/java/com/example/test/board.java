@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
@@ -54,6 +56,11 @@ public class board extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 View view1 = LayoutInflater.from(board.this).inflate(R.layout.board_more,null);
+                TextView outputofuserID;
+                outputofuserID = view1.findViewById(R.id.useridoutput);
+                String inviewuserid = ((GlobalVars) getApplicationContext()).getUserID();
+                outputofuserID.setText(inviewuserid);
+
                 TextInputLayout materialLayout, titleLayout, contentLayout;
                 materialLayout = view1.findViewById(R.id.materialLayout);
                 titleLayout = view1.findViewById(R.id.titleLayout);
@@ -81,10 +88,28 @@ public class board extends AppCompatActivity {
                                     dialog.setMessage("Database에 저장 중입니다...");
                                     dialog.show();
                                     Note note1 = new Note();
-                                    note1.setBnum("1");
-                                    note1.setWriterID("1");
+
+                                    DatabaseReference notesRef = database.getReference().child("notes");
+                                    notesRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            int dataCount = (int) dataSnapshot.getChildrenCount();
+                                            note1.setDbnum(String.valueOf(dataCount));
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                                            dialog.dismiss();
+                                            Toast.makeText(board.this, "오류가 발생하였습니다.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+
+                                    note1.setWriterID(((GlobalVars) getApplicationContext()).getUserID());
+
                                     note1.setMaterial(materialET.getText().toString());
+
                                     note1.setTitle(titleET.getText().toString());
+
                                     note1.setContent(contentET.getText().toString());
                                     database.getReference().child("notes").push().setValue(note1).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
@@ -139,9 +164,14 @@ public class board extends AppCompatActivity {
                     @Override
                     public void onClick(Note note) {
                         View view = LayoutInflater.from(board.this).inflate(R.layout.board_more, null);
+                        TextView outputofuserID;
+                        outputofuserID = view.findViewById(R.id.useridoutput);
+                        String inviewuserid = note.getWriterID();
+                        inviewuserid = " 작성자 : " + inviewuserid;
+                        outputofuserID.setText(inviewuserid);
+
                         TextInputLayout materialLayout, titleLayout, contentLayout;
                         TextInputEditText materialET, titleET, contentET;
-
 
                         materialET = view.findViewById(R.id.materialET);
                         titleET = view.findViewById(R.id.titleET);

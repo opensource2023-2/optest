@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -50,6 +51,10 @@ public class Login_page extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             //로그인 성공
+                            FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
+                            if (currentUser != null) {
+                                ((GlobalVars) getApplicationContext()).setUserID(strEmail); // 전역 변수에 이메일 저장
+                            }
                             Intent intent = new Intent(Login_page.this, home_page.class);
                             startActivity(intent);
                             finish(); //현재 엑티비티 파괴

@@ -3,12 +3,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10sp"
+        android:layout_marginEnd="10sp"
+        android:layout_marginTop="5sp"
+        android:id="@+id/useridoutput"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        />
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10sp"
         android:layout_marginEnd="10sp"
         android:layout_marginTop="5sp"
+        android:layout_below="@+id/useridoutput"
         android:id="@+id/materialLayout"
         android:hint="옷 소재를 입력하세요">
 
