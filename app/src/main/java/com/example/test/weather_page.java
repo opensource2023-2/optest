@@ -90,6 +90,10 @@ public class weather_page extends AppCompatActivity implements LocationListener 
         textWindSpeed = findViewById(R.id.textWindSpeed);
         textLastTime = findViewById(R.id.textLastTime);
 
+        //수정
+        String mylocal = "Cheongju-si";
+        updateWeather(mylocal);
+
         arr = new ArrayList<>();
         favArr = new ArrayList<>();
 
@@ -145,6 +149,25 @@ public class weather_page extends AppCompatActivity implements LocationListener 
                     }
                 }else {
                     Toast.makeText(weather_page.this,"No Internet Connection",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        //수정
+        imgSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean isInternetAvailable = NetworkCheck.isNetworkAvailable(getApplicationContext());
+                if (isInternetAvailable) {
+                    String city = editCityName.getText().toString();
+                    if (city.equals("")) {
+                        Toast.makeText(weather_page.this, "Please enter city Name", Toast.LENGTH_SHORT).show();
+                        editCityName.requestFocus();
+                        editCityName.setError("Please Enter City Name");
+                    } else {
+                        updateWeather(city);
+                    }
+                } else {
+                    Toast.makeText(weather_page.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
                 }
             }
         });
