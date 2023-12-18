@@ -20,10 +20,18 @@
         app:srcCompat="@null" />
 
     <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="100dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="-160dp"
+        app:srcCompat="@drawable/arrow" />
+
+    <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="280dp"
-        android:layout_marginTop="-500dp"
+        android:layout_height="308dp"
+        android:layout_marginTop="-490dp"
         app:srcCompat="@drawable/logo" />
 
 
