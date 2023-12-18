@@ -1,15 +1,15 @@
 package com.example.test;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class home_page extends AppCompatActivity {
 
-    ImageButton mat_btn;
+    Button mat_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,7 +18,7 @@ public class home_page extends AppCompatActivity {
         mat_btn=findViewById(R.id.mat_btn);
         mat_btn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                Intent intent= new Intent(getApplicationContext(), Crud_page.class);
+                Intent intent= new Intent(getApplicationContext(), board.class);
                 startActivity(intent);
             }
         });
