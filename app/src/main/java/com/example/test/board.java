@@ -2,9 +2,11 @@ package com.example.test;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -36,7 +38,18 @@ public class board extends AppCompatActivity {
         FirebaseApp.initializeApp(board.this);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
+        ImageButton gotohome = findViewById(R.id.homeinboard);
+
+        gotohome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), home_page.class);
+                startActivity(intent);
+            }
+        });
+
         FloatingActionButton add = findViewById(R.id.addNote);
+
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,6 +58,7 @@ public class board extends AppCompatActivity {
                 materialLayout = view1.findViewById(R.id.materialLayout);
                 titleLayout = view1.findViewById(R.id.titleLayout);
                 contentLayout = view1.findViewById(R.id.contentLayout);
+
                 TextInputEditText materialET, titleET, contentET;
                 materialET = view1.findViewById(R.id.materialET);
                 titleET = view1.findViewById(R.id.titleET);
@@ -128,6 +142,7 @@ public class board extends AppCompatActivity {
                         TextInputLayout materialLayout, titleLayout, contentLayout;
                         TextInputEditText materialET, titleET, contentET;
 
+
                         materialET = view.findViewById(R.id.materialET);
                         titleET = view.findViewById(R.id.titleET);
                         contentET = view.findViewById(R.id.contentET);
@@ -205,11 +220,11 @@ public class board extends AppCompatActivity {
                     }
                 });
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
     }
+
 }

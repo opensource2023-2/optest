@@ -6,22 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".board">
 
-    <ImageView
+    <ImageButton
         android:id="@+id/homeinboard"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="15dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_weight="1"
-        android:onClick="onPropertyButtonClick"
+        android:onClick="onImageButtonClick"
         app:srcCompat="@drawable/baseline_home_24" />
-
 
     <EditText
         android:id="@+id/search"
         android:layout_width="305dp"
         android:layout_height="50dp"
-        android:layout_marginStart="70dp"
+        android:layout_marginStart="80dp"
         android:layout_marginTop="22dp"
         android:ems="15"
         android:hint="search"
@@ -80,4 +81,5 @@
         android:textColor="#424242"
         android:text="    "
         />
+
 </RelativeLayout>
