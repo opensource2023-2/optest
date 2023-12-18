@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,7 +31,7 @@ public class board extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_board);
 
         FirebaseApp.initializeApp(board.this);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -41,12 +40,14 @@ public class board extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                View view1 = LayoutInflater.from(board.this).inflate(R.layout.add_note_dialog,null);
-                TextInputLayout titleLayout, contentLayout;
+                View view1 = LayoutInflater.from(board.this).inflate(R.layout.board_more,null);
+                TextInputLayout materialLayout, titleLayout, contentLayout;
+                materialLayout = view1.findViewById(R.id.materialLayout);
                 titleLayout = view1.findViewById(R.id.titleLayout);
                 contentLayout = view1.findViewById(R.id.contentLayout);
-                TextInputEditText titleEt, contentET;
-                titleEt = view1.findViewById(R.id.titleET);
+                TextInputEditText materialET, titleET, contentET;
+                materialET = view1.findViewById(R.id.materialET);
+                titleET = view1.findViewById(R.id.titleET);
                 contentET = view1.findViewById(R.id.contentET);
                 AlertDialog alertDialog = new AlertDialog.Builder(board.this)
                         .setTitle("추가하기")
@@ -54,18 +55,24 @@ public class board extends AppCompatActivity {
                         .setPositiveButton("추가", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                if (Objects.requireNonNull(titleEt.getText()).toString().isEmpty()) {
+                                if (Objects.requireNonNull(titleET.getText()).toString().isEmpty()) {
                                     titleLayout.setError("필수로 입력해야 하는 영역입니다.");
                                 } else if (Objects.requireNonNull(contentET.getText()).toString().isEmpty()) {
                                     contentLayout.setError("필수로 입력해야 하는 영역입니다.");
-                                } else {
+                                } else if (Objects.requireNonNull(materialET.getText()).toString().isEmpty()){
+                                    materialLayout.setError("필수로 입력해야 하는 영역입니다.");
+                                }
+                                else {
                                     ProgressDialog dialog = new ProgressDialog(board.this);
                                     dialog.setMessage("Database에 저장 중입니다...");
                                     dialog.show();
-                                    Note note = new Note();
-                                    note.setTitle(titleEt.getText().toString());
-                                    note.setContent(contentET.getText().toString());
-                                    database.getReference().child("notes").push().setValue(note).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    Note note1 = new Note();
+                                    note1.setBnum("1");
+                                    note1.setWriterID("1");
+                                    note1.setMaterial(materialET.getText().toString());
+                                    note1.setTitle(titleET.getText().toString());
+                                    note1.setContent(contentET.getText().toString());
+                                    database.getReference().child("notes").push().setValue(note1).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
                                             dialog.dismiss();
@@ -93,8 +100,6 @@ public class board extends AppCompatActivity {
             }
         });
 
-        TextView empty = findViewById(R.id.empty);
-
         RecyclerView recyclerView = findViewById(R.id.recycler);
 
         database.getReference().child("notes").addValueEventListener(new ValueEventListener() {
@@ -108,10 +113,8 @@ public class board extends AppCompatActivity {
                 }
 
                 if(arrayList.isEmpty()){
-                    empty.setVisibility(View.VISIBLE);
                     recyclerView.setVisibility(View.GONE);
                 } else {
-                    empty.setVisibility(View.GONE);
                     recyclerView.setVisibility(View.VISIBLE);
                 }
 
@@ -121,27 +124,32 @@ public class board extends AppCompatActivity {
                 adapter.setOnItemClickListener(new NoteAdapter.OnItemClickListener() {
                     @Override
                     public void onClick(Note note) {
-                        View view = LayoutInflater.from(board.this).inflate(R.layout.add_note_dialog, null);
-                        TextInputLayout titleLayout, contentLayout;
-                        TextInputEditText titleET, contentET;
+                        View view = LayoutInflater.from(board.this).inflate(R.layout.board_more, null);
+                        TextInputLayout materialLayout, titleLayout, contentLayout;
+                        TextInputEditText materialET, titleET, contentET;
 
+                        materialET = view.findViewById(R.id.materialET);
                         titleET = view.findViewById(R.id.titleET);
                         contentET = view.findViewById(R.id.contentET);
+                        materialLayout = view.findViewById(R.id.materialLayout);
                         titleLayout = view.findViewById(R.id.titleLayout);
-                        contentLayout = view.findViewById(R.id.contentET);
+                        contentLayout = view.findViewById(R.id.contentLayout);
 
+                        materialET.setText(note.getMaterial());
                         titleET.setText(note.getTitle());
                         contentET.setText(note.getContent());
 
                         ProgressDialog progressDialog = new ProgressDialog(board.this);
 
                         AlertDialog alertDialog = new AlertDialog.Builder(board.this)
-                                .setTitle(" ")
+                                .setTitle("보기 - 편집하기")
                                 .setView(view)
                                 .setPositiveButton("저장", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        if (Objects.requireNonNull(titleET.getText()).toString().isEmpty()) {
+                                        if  (Objects.requireNonNull(materialET.getText()).toString().isEmpty()){
+                                            materialLayout.setError("필수로 입력해야 하는 영역입니다.");
+                                        } else if(Objects.requireNonNull(titleET.getText()).toString().isEmpty()) {
                                             titleLayout.setError("필수로 입력해야 하는 영역입니다.");
                                         } else if (Objects.requireNonNull(contentET.getText()).toString().isEmpty()) {
                                             contentLayout.setError("필수로 입력해야 하는 영역입니다.");
@@ -149,6 +157,7 @@ public class board extends AppCompatActivity {
                                             progressDialog.setMessage("저장 중입니다...");
                                             progressDialog.show();
                                             Note note = new Note();
+                                            note.setMaterial(materialET.getText().toString());
                                             note.setTitle(titleET.getText().toString());
                                             note.setContent(contentET.getText().toString());
                                             database.getReference().child("notes").child(note.getKey()).setValue(note).addOnSuccessListener(new OnSuccessListener<Void>() {

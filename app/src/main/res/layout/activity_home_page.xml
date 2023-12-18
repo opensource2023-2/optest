@@ -23,11 +23,9 @@
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
         android:backgroundTint="#01DFA5"
-        android:text="날씨 추천 "
+        android:text="날씨 추천"
         android:textSize="35dp"
-        android:fontFamily="@font/roundfont"
         android:textStyle="bold"
-
         />
 
     <Button
@@ -38,7 +36,6 @@
         android:layout_gravity="center"
         android:backgroundTint="#01DFA5"
         android:text="게시판 및 소재별 Tip!"
-        android:fontFamily="@font/roundfont"
         android:textSize="32sp"
         android:textStyle="bold"
 

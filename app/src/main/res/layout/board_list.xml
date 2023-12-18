@@ -16,7 +16,7 @@
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/textViewNumber"
+            android:id="@+id/list_item_bnum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="번호"
@@ -28,14 +28,14 @@
             android:id="@+id/notenterfield1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/textViewNumber"
+            android:layout_toEndOf="@+id/list_item_bnum"
             android:text=" | "
             android:textStyle="bold"
             android:textSize="16sp"
             android:textColor="?attr/colorPrimary"/>
 
         <TextView
-            android:id="@+id/textViewLocation"
+            android:id="@+id/list_item_material"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/notenterfield1"
@@ -47,13 +47,13 @@
             android:id="@+id/noteneterfield2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/textViewLocation"
+            android:layout_toEndOf="@id/list_item_material"
             android:text=" | "
             android:textSize="16sp"
             android:layout_marginStart="16dp"/>
 
         <TextView
-            android:id="@+id/textViewTitle"
+            android:id="@+id/list_item_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/noteneterfield2"
@@ -65,13 +65,13 @@
             android:id="@+id/noteneterfield3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/textViewTitle"
+            android:layout_toEndOf="@id/list_item_title"
             android:text=" | "
             android:textSize="16sp"
             android:layout_marginStart="16dp"/>
 
         <TextView
-            android:id="@+id/textViewId"
+            android:id="@+id/list_item_writerid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/noteneterfield3"

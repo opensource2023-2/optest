@@ -30,8 +30,10 @@ public class boardadapter extends RecyclerView.Adapter<boardadapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.title.setText(arrayList.get(position).getTitle());
+        holder.bnum.setText(arrayList.get(position).getBnum());
         holder.material.setText(arrayList.get(position).getMaterial());
+        holder.title.setText(arrayList.get(position).getTitle());
+        holder.writerid.setText(arrayList.get(position).getWriterID());
         holder.itemView.setOnClickListener(view -> onItemClickListener.onClick(arrayList.get(position)));
     }
 
@@ -41,11 +43,13 @@ public class boardadapter extends RecyclerView.Adapter<boardadapter.ViewHolder>{
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        TextView title, subtitle;
+        TextView bnum, material, title, writerid;
         public ViewHolder (@NonNull View itemView){
             super(itemView);
+            bnum = itemView.findViewById(R.id.list_item_bnum);
+            material = itemView.findViewById(R.id.list_item_material);
             title = itemView.findViewById(R.id.list_item_title);
-            subtitle = itemView.findViewById(R.id.list_item_subtitle);
+            writerid = itemView.findViewById(R.id.list_item_writerid);
         }
     }
 
