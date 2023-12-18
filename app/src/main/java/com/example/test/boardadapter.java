@@ -30,23 +30,16 @@ public class boardadapter extends RecyclerView.Adapter<boardadapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String textofdbnum = String.format("%-5s",arrayList.get(position).getDbnum());
-        if (textofdbnum.length() > 5){
-            textofdbnum = textofdbnum.substring(0, 5);
-        }
-        textofdbnum = "  " + textofdbnum + " ";
-        holder.dbnum.setText(textofdbnum);
-
-        String textofmaterial = String.format("%-12s",arrayList.get(position).getMaterial());
-        if (textofmaterial.length() > 12){
-            textofmaterial = textofmaterial.substring(0, 12);
+        String textofmaterial = String.format("%-7s",arrayList.get(position).getMaterial());
+        if (textofmaterial.length() > 7){
+            textofmaterial = textofmaterial.substring(0, 7);
         }
         textofmaterial = " " + textofmaterial + " ";
         holder.material.setText(textofmaterial);
 
-        String textoftitle = String.format("%-27s", arrayList.get(position).getTitle());
-        if(textoftitle.length() > 27){
-            textoftitle = textoftitle.substring(0, 27);
+        String textoftitle = String.format("%-18s", arrayList.get(position).getTitle());
+        if(textoftitle.length() > 18){
+            textoftitle = textoftitle.substring(0, 18);
         }
         textoftitle = " " + textoftitle + " ";
         holder.title.setText(textoftitle);
@@ -67,10 +60,9 @@ public class boardadapter extends RecyclerView.Adapter<boardadapter.ViewHolder>{
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        TextView dbnum, material, title, writerid;
+        TextView material, title, writerid;
         public ViewHolder (@NonNull View itemView){
             super(itemView);
-            dbnum = itemView.findViewById(R.id.list_item_bnum);
 
             material = itemView.findViewById(R.id.list_item_material);
 

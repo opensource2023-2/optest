@@ -90,19 +90,6 @@ public class board extends AppCompatActivity {
                                     Note note1 = new Note();
 
                                     DatabaseReference notesRef = database.getReference().child("notes");
-                                    notesRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                            int dataCount = (int) dataSnapshot.getChildrenCount();
-                                            note1.setDbnum(String.valueOf(dataCount));
-                                        }
-
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError databaseError) {
-                                            dialog.dismiss();
-                                            Toast.makeText(board.this, "오류가 발생하였습니다.", Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
 
                                     note1.setWriterID(((GlobalVars) getApplicationContext()).getUserID());
 
