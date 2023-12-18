@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,23 +31,25 @@ public class board extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.board);
+        setContentView(R.layout.activity_board);
 
-        FirebaseApp.initializeApp(MainActivity2.this);
+        FirebaseApp.initializeApp(board.this);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         FloatingActionButton add = findViewById(R.id.addNote);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                View view1 = LayoutInflater.from(MainActivity2.this).inflate(R.layout.add_note_dialog,null);
-                TextInputLayout titleLayout, contentLayout;
+                View view1 = LayoutInflater.from(board.this).inflate(R.layout.board_more,null);
+                TextInputLayout materialLayout, titleLayout, contentLayout;
+                materialLayout = view1.findViewById(R.id.materialLayout);
                 titleLayout = view1.findViewById(R.id.titleLayout);
                 contentLayout = view1.findViewById(R.id.contentLayout);
-                TextInputEditText titleET, contentET;
+                TextInputEditText materialET, titleET, contentET;
+                materialET = view1.findViewById(R.id.materialET);
                 titleET = view1.findViewById(R.id.titleET);
                 contentET = view1.findViewById(R.id.contentET);
-                AlertDialog alertDialog = new AlertDialog.Builder(MainActivity2.this)
+                AlertDialog alertDialog = new AlertDialog.Builder(board.this)
                         .setTitle("추가하기")
                         .setView(view1)
                         .setPositiveButton("추가", new DialogInterface.OnClickListener() {
@@ -58,11 +59,17 @@ public class board extends AppCompatActivity {
                                     titleLayout.setError("필수로 입력해야 하는 영역입니다.");
                                 } else if (Objects.requireNonNull(contentET.getText()).toString().isEmpty()) {
                                     contentLayout.setError("필수로 입력해야 하는 영역입니다.");
-                                } else {
-                                    ProgressDialog dialog = new ProgressDialog(MainActivity2.this);
+                                } else if (Objects.requireNonNull(materialET.getText()).toString().isEmpty()){
+                                    materialLayout.setError("필수로 입력해야 하는 영역입니다.");
+                                }
+                                else {
+                                    ProgressDialog dialog = new ProgressDialog(board.this);
                                     dialog.setMessage("Database에 저장 중입니다...");
                                     dialog.show();
                                     Note note1 = new Note();
+                                    note1.setBnum("1");
+                                    note1.setWriterID("1");
+                                    note1.setMaterial(materialET.getText().toString());
                                     note1.setTitle(titleET.getText().toString());
                                     note1.setContent(contentET.getText().toString());
                                     database.getReference().child("notes").push().setValue(note1).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -70,13 +77,13 @@ public class board extends AppCompatActivity {
                                         public void onSuccess(Void unused) {
                                             dialog.dismiss();
                                             dialogInterface.dismiss();
-                                            Toast.makeText(MainActivity2.this, "성공적으로 저장되었습니다!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(board.this, "성공적으로 저장되었습니다!", Toast.LENGTH_SHORT).show();
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
                                             dialog.dismiss();
-                                            Toast.makeText(MainActivity2.this, "저장 과정에 오류가 있었습니다", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(board.this, "저장 과정에 오류가 있었습니다", Toast.LENGTH_SHORT).show();
                                         }
                                     });
                                 }
@@ -93,8 +100,6 @@ public class board extends AppCompatActivity {
             }
         });
 
-        TextView empty = findViewById(R.id.empty);
-
         RecyclerView recyclerView = findViewById(R.id.recycler);
 
         database.getReference().child("notes").addValueEventListener(new ValueEventListener() {
@@ -108,40 +113,43 @@ public class board extends AppCompatActivity {
                 }
 
                 if(arrayList.isEmpty()){
-                    empty.setVisibility(View.VISIBLE);
                     recyclerView.setVisibility(View.GONE);
                 } else {
-                    empty.setVisibility(View.GONE);
                     recyclerView.setVisibility(View.VISIBLE);
                 }
 
-                NoteAdapter adapter = new NoteAdapter(MainActivity2.this, arrayList);
+                NoteAdapter adapter = new NoteAdapter(board.this, arrayList);
                 recyclerView.setAdapter(adapter);
 
                 adapter.setOnItemClickListener(new NoteAdapter.OnItemClickListener() {
                     @Override
                     public void onClick(Note note) {
-                        View view = LayoutInflater.from(MainActivity2.this).inflate(R.layout.add_note_dialog, null);
-                        TextInputLayout titleLayout, contentLayout;
-                        TextInputEditText titleET, contentET;
+                        View view = LayoutInflater.from(board.this).inflate(R.layout.board_more, null);
+                        TextInputLayout materialLayout, titleLayout, contentLayout;
+                        TextInputEditText materialET, titleET, contentET;
 
+                        materialET = view.findViewById(R.id.materialET);
                         titleET = view.findViewById(R.id.titleET);
                         contentET = view.findViewById(R.id.contentET);
+                        materialLayout = view.findViewById(R.id.materialLayout);
                         titleLayout = view.findViewById(R.id.titleLayout);
-                        contentLayout = view.findViewById(R.id.contentET);
+                        contentLayout = view.findViewById(R.id.contentLayout);
 
+                        materialET.setText(note.getMaterial());
                         titleET.setText(note.getTitle());
                         contentET.setText(note.getContent());
 
-                        ProgressDialog progressDialog = new ProgressDialog(MainActivity2.this);
+                        ProgressDialog progressDialog = new ProgressDialog(board.this);
 
-                        AlertDialog alertDialog = new AlertDialog.Builder(MainActivity2.this)
-                                .setTitle("보기-편집하기")
+                        AlertDialog alertDialog = new AlertDialog.Builder(board.this)
+                                .setTitle("보기 - 편집하기")
                                 .setView(view)
                                 .setPositiveButton("저장", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        if (Objects.requireNonNull(titleET.getText()).toString().isEmpty()) {
+                                        if  (Objects.requireNonNull(materialET.getText()).toString().isEmpty()){
+                                            materialLayout.setError("필수로 입력해야 하는 영역입니다.");
+                                        } else if(Objects.requireNonNull(titleET.getText()).toString().isEmpty()) {
                                             titleLayout.setError("필수로 입력해야 하는 영역입니다.");
                                         } else if (Objects.requireNonNull(contentET.getText()).toString().isEmpty()) {
                                             contentLayout.setError("필수로 입력해야 하는 영역입니다.");
@@ -149,6 +157,7 @@ public class board extends AppCompatActivity {
                                             progressDialog.setMessage("저장 중입니다...");
                                             progressDialog.show();
                                             Note note = new Note();
+                                            note.setMaterial(materialET.getText().toString());
                                             note.setTitle(titleET.getText().toString());
                                             note.setContent(contentET.getText().toString());
                                             database.getReference().child("notes").child(note.getKey()).setValue(note).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -156,13 +165,13 @@ public class board extends AppCompatActivity {
                                                 public void onSuccess(Void unused) {
                                                     progressDialog.dismiss();
                                                     dialogInterface.dismiss();
-                                                    Toast.makeText(MainActivity2.this, "성공적으로 저장되었습니다!", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(board.this, "성공적으로 저장되었습니다!", Toast.LENGTH_SHORT).show();
                                                 }
                                             }).addOnFailureListener(new OnFailureListener() {
                                                 @Override
                                                 public void onFailure(@NonNull Exception e) {
                                                     progressDialog.dismiss();
-                                                    Toast.makeText(MainActivity2.this, "저장 과정에 오류가 있었습니다", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(board.this, "저장 과정에 오류가 있었습니다", Toast.LENGTH_SHORT).show();
                                                 }
                                             });
                                         }
@@ -182,7 +191,7 @@ public class board extends AppCompatActivity {
                                         database.getReference().child("notes").child(note.getKey()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void unused) {
-                                                Toast.makeText(MainActivity2.this,"성공적으로 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(board.this,"성공적으로 삭제되었습니다.", Toast.LENGTH_SHORT).show();
                                             }
                                         }).addOnFailureListener(new OnFailureListener() {
                                             @Override

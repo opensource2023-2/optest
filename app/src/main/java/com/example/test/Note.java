@@ -1,7 +1,7 @@
 package com.example.test;
 
 public class Note {
-    String key, num, title, material, content, writerID;
+    String key, bnum, title, material, content, writerID;
 
     public Note(){
 
@@ -19,7 +19,7 @@ public class Note {
 
     public String getWriterID() {return writerID;}
 
-    public String getNum() {return num;}
+    public String getBnum() { return bnum; }
 
     public String getKey(){
         return key;
@@ -33,7 +33,7 @@ public class Note {
 
     public void setWriterID(String writerID) { this.writerID = writerID; }
 
-    public void setNum(String num) { this.num = num; }
+    public void setBnum(String bnum) { this.bnum = bnum; }
 
     public void setContent(String content){
         this.content = content;
