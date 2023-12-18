@@ -118,10 +118,10 @@ public class board extends AppCompatActivity {
                     recyclerView.setVisibility(View.VISIBLE);
                 }
 
-                NoteAdapter adapter = new NoteAdapter(board.this, arrayList);
+                boardadapter adapter = new boardadapter(board.this, arrayList);
                 recyclerView.setAdapter(adapter);
 
-                adapter.setOnItemClickListener(new NoteAdapter.OnItemClickListener() {
+                adapter.setOnItemClickListener(new boardadapter.OnItemClickListener() {
                     @Override
                     public void onClick(Note note) {
                         View view = LayoutInflater.from(board.this).inflate(R.layout.board_more, null);
