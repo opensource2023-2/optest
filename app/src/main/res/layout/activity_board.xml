@@ -58,6 +58,27 @@
         android:backgroundTint="#01DFA5"
         android:src="@drawable/baseline_add_24" />
 
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:text="  번호                         제목                               아이디                     작성일 "
+        android:textStyle="bold"
+
+    />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="397dp"
+        android:layout_height="1dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="115dp"
+        android:background="#000000"
+        android:textColor="#424242"
+        android:text="    "
+        />
+
 
 
 </RelativeLayout>
