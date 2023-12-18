@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:gravity="center"
-            android:text="City Name"
+            android:text="도시 검색"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="32sp"
@@ -91,7 +91,7 @@
                 android:layout_margin="5dp"
                 android:layout_weight="4"
                 android:background="@android:color/transparent"
-                android:hint="Enter City Name"
+                android:hint="도시 입력"
                 android:padding="5dp"
                 android:textColorHint="@color/white"
                 android:textSize="20sp">
@@ -133,7 +133,7 @@
             android:layout_marginBottom="4dp"
             android:gravity="center_horizontal"
             android:padding="2dp"
-            android:text="23"
+            android:text="0"
             android:textColor="@color/white"
             android:textSize="65sp" />
 
@@ -148,7 +148,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="4dp"
-            android:src="@drawable/baseline_cloud_24" />
+            android:src="@drawable/cloudy_sunny" />
 
         <TextView
             android:id="@+id/textConditions"
@@ -161,7 +161,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:gravity="center"
-            android:text="Conditions"
+            android:text="상태"
             android:textSize="20sp"
             android:textAlignment="center"
             android:textColor="@color/white" />
@@ -183,7 +183,7 @@
                 android:background="@android:color/transparent"
                 android:gravity="end"
                 android:padding="5dp"
-                android:text="Wind Speed: "
+                android:text="풍속 : "
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -219,7 +219,7 @@
                 android:background="@android:color/transparent"
                 android:gravity="end"
                 android:padding="5dp"
-                android:text="Last Update: "
+                android:text="마지막 업데이트 : "
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -244,6 +244,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/llCard"
             android:orientation="horizontal"
+            android:gravity="center"
             android:weightSum="4">
 
             <TextView
@@ -256,9 +257,9 @@
                 android:layout_marginBottom="10dp"
                 android:layout_weight="2"
                 android:background="@android:color/transparent"
-                android:gravity="end"
+                android:gravity="center"
                 android:padding="5dp"
-                android:text="Favorite Cities"
+                android:text="빨래하기 좋은 시간 추천"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
         </LinearLayout>
