@@ -221,7 +221,7 @@
                 android:padding="5dp"
                 android:text="마지막 업데이트 : "
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/textLastTime"
@@ -234,7 +234,7 @@
                 android:padding="5dp"
                 android:text="YYYY-MM-DD\nHH:MM:SS"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="13sp" />
 
         </LinearLayout>
 
@@ -252,14 +252,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="17dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
                 android:layout_weight="2"
                 android:background="@android:color/transparent"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="빨래하기 좋은 시간 추천"
+                android:text="@null"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
         </LinearLayout>
